@@ -1,0 +1,29 @@
+# git ls-files --others --exclude-from=.git/info/exclude
+# Lines that start with '#' are comments.
+# For a project mostly in C, the following would be a good set of
+# exclude patterns (uncomment them if you want to use them):
+# *.[oa]
+# Standard
+*~
+# Standard Rails project
+/tmp/
+/db/*.sqlite3
+# SASS CSS generation
+/public/stylesheets/.sass-cache/
+# Netbeans
+/nbproject/
+# Sublime Text 2 project
+*.sublime-project
+*.sublime-workspace
+*(copie)*
+# RVM
+.rvmrc.idea
+# Rubymine
+/.idea/
+.bundle/
+log/*.log
+pkg/
+test/dummy/db/*.sqlite3
+test/dummy/log/*.log
+test/dummy/tmp/
+test/dummy/.sass-cache
