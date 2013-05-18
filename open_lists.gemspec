@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.version     = OpenLists::VERSION
   s.authors     = ["L.Briais"]
   s.email       = ["lbnetid+rb@gmail.com"]
-  s.homepage    = "TODO"
+  s.homepage    = "https://www.nanonet"
   s.summary     = "Provides a generic UI for database tables."
   s.description = "Open Lists enables to manipulate tables in the database that have been introspected by database_introspection gem."
 
@@ -23,6 +23,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'jquery-ui-rails'
   s.add_dependency 'bootstrap-sass', '~> 2.3.1.0'
   s.add_dependency 'uglifier', '>= 1.0.3'
+  s.add_dependency 'kaminari'
 
   s.add_development_dependency "sqlite3"
 end

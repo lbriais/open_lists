@@ -30,7 +30,7 @@ gemspec
 
 # To use debugger
 # gem 'debugger'
-
+gem 'kaminari'
 gem 'database_introspection', path: "/home/laurent/devel/ruby/gems/database_introspection"
 
 # To use debugger
