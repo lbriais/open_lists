@@ -134,6 +134,12 @@ PLATFORMS
 
 DEPENDENCIES
   Open Lists!
+  bootstrap-sass (~> 2.3.1.0)
+  coffee-rails (~> 3.2.1)
   database_introspection!
+  jquery-rails
+  jquery-ui-rails
   kaminari
+  sass-rails (~> 3.2.3)
   sqlite3
+  uglifier (>= 1.0.3)

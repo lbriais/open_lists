@@ -1,0 +1,12 @@
+<div class="btn-group" id="results-per-page-button">
+  <%= per_button value %>
+  <button class="btn btn-mini dropdown-toggle" data-toggle="dropdown">
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu">
+    <li><%= per_link 5 %></li>
+    <li><%= per_link 25 %></li>
+    <li><%= per_link 100 %></li>
+    <li><%= per_link 1000 %></li>
+  </ul>
+</div>

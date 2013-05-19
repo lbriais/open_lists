@@ -20,6 +20,7 @@
 .rvmrc.idea
 # Rubymine
 /.idea/
+/projectFilesBackup/
 .bundle/
 log/*.log
 pkg/

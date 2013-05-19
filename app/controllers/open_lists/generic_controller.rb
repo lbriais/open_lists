@@ -3,6 +3,7 @@ require_dependency "open_lists/application_controller"
 module OpenLists
   class GenericController < ApplicationController
     before_filter :determine_model
+    helper_method :sort_column, :sort_direction
 
     # GET /shared_lists
     # GET /shared_lists.json

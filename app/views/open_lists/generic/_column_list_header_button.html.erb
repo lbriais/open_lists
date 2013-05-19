@@ -1,0 +1,15 @@
+<%
+column = column.to_s
+title ||= column.titleize
+title += " (#{current_direction})" if column == sort_column
+%>
+
+<div class="btn-group">
+  <%= sortable_button(column, title: title) %>
+  <button class="btn btn-mini dropdown-toggle" data-toggle="dropdown">
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu">
+    <li><%= sortable_link column, title: "Sort #{display_other_direction} order" %></li>
+  </ul>
+</div>
