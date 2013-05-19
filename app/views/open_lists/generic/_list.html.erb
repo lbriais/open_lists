@@ -14,7 +14,7 @@
     <% else %>
         <div class="row-fluid">
           <div class="span3">
-            Results per page: <%= items_per_page_button params[:per] %>
+            Results per page: <%= items_per_page_button_tag params[:per] %>
             </p>
           </div>
           <div class="span9">
@@ -28,7 +28,7 @@
             <tr>
               <% column_list_to_display.each do |column_name| %>
                   <th>
-                    <%= sortable_column_header_button column_name %>
+                    <%= column_list_header_button_tag column_name %>
                   </th>
               <%end %>
 

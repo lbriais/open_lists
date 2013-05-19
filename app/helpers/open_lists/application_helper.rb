@@ -26,7 +26,7 @@ module OpenLists
       link_to title, params.merge(sort: column, direction: direction), class: css_class, remote: true, method: :get
     end
 
-    def sortable_button(column, title: nil, css_class: 'btn btn-mini')
+    def sortable_column_title_link_as_button(column, title: nil, css_class: 'btn btn-mini')
       sortable_link column, title: title, css_class: css_class
     end
 
@@ -40,11 +40,11 @@ module OpenLists
       per_link value, css_class: 'btn btn-mini'
     end
 
-    def items_per_page_button(value)
+    def items_per_page_button_tag(value)
       render partial: 'items_per_page_button', locals: {value: value}
     end
 
-    def sortable_column_header_button(column)
+    def column_list_header_button_tag(column)
       render partial: 'column_list_header_button', locals: {column: column, title: @model.human_attribute_name(column)}
     end
 
