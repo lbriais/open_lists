@@ -26,7 +26,7 @@ module OpenLists
       link_to title, params.merge(sort: column, direction: direction), class: css_class, remote: true, method: :get
     end
 
-    def sortable_column_title_link_as_button(column, title: nil, css_class: 'btn btn-mini')
+    def sortable_link_as_button(column, title: nil, css_class: 'btn btn-mini')
       sortable_link column, title: title, css_class: css_class
     end
 

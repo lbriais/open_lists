@@ -1,12 +1,19 @@
 module OpenLists
   module GenericHelper
     def new_item_path
+      return "/#{module_base_url}/#{params[:domain]}/#{params[:list_name]}/new" if params[:domain] and params[:list_name]
+      "/#{module_base_url}/#{@domain.to_param}"
     end
 
     def item_path(item = @item)
+      return "/#{module_base_url}/#{params[:domain]}/#{params[:list_name]}/#{params[:id]}" if params[:domain] and params[:list_name] and params[:id]
+      return "/#{module_base_url}/#{item.class.to_param}/#{item.to_param}"  unless item.nil?
+      nil
     end
 
+
     def edit_item_path(item = @item)
+      "#{item_path item}/edit"
     end
 
     def fields_to_display_for_model
@@ -31,6 +38,9 @@ module OpenLists
       end
     end
 
+    def module_base_url
+      Engine.routes.default_scope[:module]
+    end
 
 
   end

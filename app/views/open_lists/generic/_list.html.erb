@@ -39,7 +39,7 @@
             <% @items.each do |item| %>
                 <tr>
                   <% column_list_to_display.each do |column| %>
-                      <td onclick="location.href='<%= item_path %>'">
+                      <td onclick="location.href='<%= item_path(item) %>'">
                         <%= field_as_display_element(item, column) %>
                       </td>
                   <% end %>

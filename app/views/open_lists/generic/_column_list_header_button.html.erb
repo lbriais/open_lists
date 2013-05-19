@@ -5,7 +5,7 @@ title += " (#{current_direction})" if column == sort_column
 %>
 
 <div class="btn-group">
-  <%= sortable_column_title_link_as_button(column, title: title) %>
+  <%= sortable_link_as_button(column, title: title) %>
   <button class="btn btn-mini dropdown-toggle" data-toggle="dropdown">
     <span class="caret"></span>
   </button>
