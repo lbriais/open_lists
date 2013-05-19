@@ -16,6 +16,16 @@ module OpenLists
       "#{item_path item}/edit"
     end
 
+    def name_for_link(item)
+      return "" if item.nil?
+      name = 'No name'
+      name = "#{item.class.display_name} #{item.attributes['id']}" if item.attribute_names.include? 'id'
+      name = item.attributes['name'] if item.attribute_names.include? 'name'
+      name = item.attributes['title'] if item.attribute_names.include? 'title'
+      name = item.class.name_for_link(item) if item.class.respond_to? :name_for_link
+      name
+    end
+
     def fields_to_display_for_model
       @model.attribute_names
     end
