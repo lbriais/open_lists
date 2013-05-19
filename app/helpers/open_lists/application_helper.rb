@@ -11,11 +11,9 @@ module OpenLists
     end
     def other_direction
       sort_direction == 'desc' ? 'asc' : 'desc'
-      sort_direction == 'desc' ? 'asc' : 'desc'
     end
     def display_current_direction() DIRECTIONS[current_direction.to_sym] end
     def display_other_direction() DIRECTIONS[other_direction.to_sym] end
-
 
 
     def sortable_link(column, title: nil, css_class: "")
@@ -31,13 +29,13 @@ module OpenLists
     end
 
 
-    def per_link(value, css_class: "")
-      value = Kaminari::Configuration.default_per_page if value.nil?
-      link_to value, params.merge(per: value), class: css_class, remote: true, method: :get
+    def per_link(value = params[:per], css_class = "")
+      value = Kaminari.config.default_per_page if value.nil? #
+      link_to value.to_s, params.merge(per: value), class: css_class, remote: true, method: :get
     end
 
-    def per_button(value)
-      per_link value, css_class: 'btn btn-mini'
+    def per_link_as_button(value = nil)
+      per_link value, 'btn btn-mini'
     end
 
     def items_per_page_button_tag(value)
