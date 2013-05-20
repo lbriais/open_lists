@@ -3,7 +3,7 @@
     <% column_list_to_display.each do |column_name| %>
         <% next unless @item[column_name] %>
         <%= column_name.titleize %>:
-        <%= h @item[column_name] %>
+        <%= field_as_display_element @item, column_name %>
         <hr/>
     <%end %>
 
