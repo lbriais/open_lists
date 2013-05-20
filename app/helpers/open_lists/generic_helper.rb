@@ -67,8 +67,10 @@ module OpenLists
       case attribute_type
         when :integer
           # Special case: is it a link to another table
-          if model.reflections.keys.include? attribute.gsub(DynamicModel::RelationsAnalyser::KEY_IDENTIFIER, '')
-            return 'No yet possible to edit...'
+          # if it's any it should end with DynamicModel::RelationsAnalyser::KEY_IDENTIFIER
+          reflection_key = attribute.gsub(DynamicModel::RelationsAnalyser::KEY_IDENTIFIER, '')
+          if model.reflections.keys.include? reflection_key
+            return form.select(attribute, model.reflections[reflection_key].class_name.constantize.all.map{|s| [ name_for_link(s), s[s.class.primary_key] ]}, {include_blank: 'None'})
           end
           # Else just show the number
           form.number_field attribute.to_sym
