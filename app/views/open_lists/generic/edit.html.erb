@@ -1,0 +1,11 @@
+<div class="page-header">
+  <h1><%=t '.title', :default => [:'helpers.titles.edit', 'Edit %{model}'], :model => @model.display_name.singularize %></h1>
+</div>
+
+<%= render 'form' %>
+
+<%= link_to t('.show', :default => t("helpers.links.show")),
+            item_path, :class => 'mini-btn' %>
+|
+<%= link_to t('.back', :default => t("helpers.links.back")),
+            model_path, :class => 'mini-btn' %>

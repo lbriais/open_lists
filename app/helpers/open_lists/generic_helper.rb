@@ -19,6 +19,11 @@ module OpenLists
       "#{item_path item}/edit"
     end
 
+    def form_options(item = @item)
+      url = item_path(item)
+      {url: url, controller: 'OpenLists::Generic'}
+    end
+
     def name_for_link(item)
       return "" if item.nil?
       name = 'No name'
@@ -29,8 +34,14 @@ module OpenLists
       name
     end
 
-    def fields_to_display_for_model
-      @model.attribute_names
+    def fields_to_edit_for_model(model = @model)
+      model.attribute_names
+    end
+
+    def fields_to_display_for_model(model = @model)
+      fields = model.attr_accessible[:default].to_a - [""]
+      fields = model.attribute_names if fields.empty?
+      fields
     end
 
     def field_as_display_element(item, attribute)
@@ -51,6 +62,22 @@ module OpenLists
       end
     end
 
+    def field_as_edit_element(form, model, attribute)
+      attribute_type =  model.columns_hash[attribute].type
+      case attribute_type
+        when :integer
+          # Special case: is it a link to another table
+          if model.reflections.keys.include? attribute.gsub(DynamicModel::RelationsAnalyser::KEY_IDENTIFIER, '')
+            return 'No yet possible to edit...'
+          end
+          # Else just show the number
+          form.number_field attribute.to_sym
+        when :boolean
+          form.check_box attribute.to_sym
+        else
+          form.text_field attribute.to_sym
+      end
+    end
     def module_base_url
       Engine.routes.default_scope[:module]
     end

@@ -1,0 +1,25 @@
+<%= form_for(@item, form_options(@item)) do |f| %>
+    <% if @item.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@item.errors.count, "error") %> prohibited this item from being saved:</h2>
+
+          <ul>
+            <% @item.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="form-actions">
+      <% fields_to_edit_for_model.each do |field| %>
+          <div class="fields">
+            <%= render partial: 'form_field', locals: {field: field, f: f} %>
+          </div>
+      <% end %>
+
+      <%= f.submit nil, :class => 'btn btn-primary' %>
+      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                  item_path, :class => 'btn' %>
+      </div>
+<% end %>
