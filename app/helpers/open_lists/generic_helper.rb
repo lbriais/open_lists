@@ -66,6 +66,8 @@ module OpenLists
       attribute_type =  model.columns_hash[attribute].type
       case attribute_type
         when :integer
+          # Is it the primary key ?
+          return form.text_field(attribute.to_sym, disabled: true) if attribute == model.primary_key
           # Special case: is it a link to another table
           # if it's any it should end with DynamicModel::RelationsAnalyser::KEY_IDENTIFIER
           reflection_key = attribute.gsub(DynamicModel::RelationsAnalyser::KEY_IDENTIFIER, '')
@@ -76,6 +78,12 @@ module OpenLists
           form.number_field attribute.to_sym
         when :boolean
           form.check_box attribute.to_sym
+        when :datetime
+          if ['created_at', 'updated_at'].include? attribute
+            form.text_field attribute.to_sym, disabled: true
+          else
+            form.text_field attribute.to_sym
+          end
         else
           form.text_field attribute.to_sym
       end
