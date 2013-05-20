@@ -82,7 +82,7 @@ module OpenLists
           if ['created_at', 'updated_at'].include? attribute
             form.text_field attribute.to_sym, disabled: true
           else
-            form.text_field attribute.to_sym
+            form.text_field attribute.to_sym, class: "date-picker-field"
           end
         else
           form.text_field attribute.to_sym
