@@ -1,0 +1,9 @@
+<p id="notice"><%= notice %></p>
+
+<%= content_tag :h1, "Viewing #{@model.display_name}" %>
+<hr/>
+
+<%= render :partial => 'show' %>
+<hr/>
+<%= link_to 'Edit', edit_item_path %> |
+<%= link_to 'Back', model_path %>

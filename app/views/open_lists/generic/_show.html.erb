@@ -1,0 +1,11 @@
+<% column_list_to_display = fields_to_display_for_model %>
+<%= content_tag "div", id: 'item', data: {object: @item.inspect} do %>
+    <% column_list_to_display.each do |column_name| %>
+        <% next unless @item[column_name] %>
+        <%= column_name.titleize %>:
+        <%= h @item[column_name] %>
+        <hr/>
+    <%end %>
+
+
+<% end %>

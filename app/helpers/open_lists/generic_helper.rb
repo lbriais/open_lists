@@ -7,10 +7,13 @@ module OpenLists
 
     def item_path(item = @item)
       return "/#{module_base_url}/#{params[:domain]}/#{params[:list_name]}/#{params[:id]}" if params[:domain] and params[:list_name] and params[:id]
-      return "/#{module_base_url}/#{item.class.to_param}/#{item.to_param}"  unless item.nil?
+      return "#{model_path(item.class)}/#{item.to_param}" unless item.nil?
       nil
     end
 
+    def model_path(model = @model)
+      "/#{module_base_url}/#{model.to_param}"
+    end
 
     def edit_item_path(item = @item)
       "#{item_path item}/edit"
