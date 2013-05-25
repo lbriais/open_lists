@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 module OpenLists
   module GenericHelper
 
@@ -10,9 +11,8 @@ module OpenLists
     # @return the path to the list item passed (default is current)
     # @param [DynamicModel::ActiveRecordExtension] item
     def item_path(item = @item)
-      return "/#{module_base_url}/#{params[:domain]}/#{params[:list_name]}/#{params[:id]}" if params[:domain] and params[:list_name] and params[:id]
       return "#{model_path(item.class)}/#{item.to_param}" unless item.nil?
-      nil
+      "/#{module_base_url}/#{params[:domain]}/#{params[:list_name]}/#{params[:id]}" if params[:domain] and params[:list_name] and params[:id]
     end
 
     # @return the path to the list index passed (default is current)

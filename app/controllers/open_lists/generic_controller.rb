@@ -97,7 +97,6 @@ module OpenLists
     private
 
     def determine_model
-      DynamicModel.introspect_database
       @domain ||= DynamicModel::ManagedDomains.domain_module(params[:domain])
       @model ||= @domain.model_class(params[:list_name])
     end

@@ -14,7 +14,7 @@ PATH
 PATH
   remote: /home/laurent/devel/ruby/gems/database_introspection
   specs:
-    database_introspection (0.1.0)
+    database_introspection (0.1.1)
       activemodel (>= 3.2.13)
       activerecord (>= 3.2.13)
       activeresource (>= 3.2.13)
