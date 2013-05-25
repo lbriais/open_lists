@@ -1,0 +1,23 @@
+<h1>Listing domain_lists</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @domain_lists.each do |domain_list| %>
+  <tr>
+    <td><%= domain_list %></td>
+    <td><%= link_to 'Show', domain_list_path(domain_list) %></td>
+    <td><%= link_to 'Edit', edit_domain_list_path(domain_list) %></td>
+    <td><%= link_to 'Destroy', domain_list, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Domain list', new_domain_list_path %>
