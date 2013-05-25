@@ -96,10 +96,7 @@ module OpenLists
 
     private
 
-    def determine_model
-      @domain ||= DynamicModel::ManagedDomains.domain_module(params[:domain])
-      @model ||= @domain.model_class(params[:list_name])
-    end
+
 
     def actual_list_param_name
       @model.name.underscore.tr '/', '_'

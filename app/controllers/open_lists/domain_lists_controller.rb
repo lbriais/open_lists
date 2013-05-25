@@ -87,11 +87,6 @@ module OpenLists
       end
     end
 
-    private
-
-    def determine_domain
-      @domain = DynamicModel::ManagedDomains.domain_module params[:domain]
-    end
 
   end
 end
