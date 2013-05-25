@@ -90,6 +90,13 @@ module OpenLists
       end
     end
 
+    # GET /open_lists/:domain/:list_name/define
+    def define_model
+      respond_to do |format|
+        format.html
+        format.json { head :no_content }
+      end
+    end
 
 
 
