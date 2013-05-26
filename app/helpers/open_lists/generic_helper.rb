@@ -44,7 +44,7 @@ module OpenLists
       case attribute_type
         when :integer
           # Special case: is it a link to another table
-          if item.class.reflections.keys.include? attribute.gsub(DynamicModel::RelationsAnalyser::KEY_IDENTIFIER, '')
+          if item.class.reflections.keys.include? attribute.gsub(DynamicModel::RelationsAnalyser::KEY_IDENTIFIER, '').to_sym
             child = item.send attribute.gsub(DynamicModel::RelationsAnalyser::KEY_IDENTIFIER, '').to_sym
             return link_to(display_name_for_item(child), item_path(child))
           end
@@ -70,7 +70,7 @@ module OpenLists
           return form.text_field(attribute.to_sym, disabled: true) if attribute == model.primary_key
           # Special case: is it a link to another table?
           # if it is, then it should end with DynamicModel::RelationsAnalyser::KEY_IDENTIFIER
-          reflection_key = attribute.gsub(DynamicModel::RelationsAnalyser::KEY_IDENTIFIER, '')
+          reflection_key = attribute.gsub(DynamicModel::RelationsAnalyser::KEY_IDENTIFIER, '').to_sym
           if model.reflections.keys.include? reflection_key
             content = model.reflections[reflection_key].class_name.constantize.all.map do |s|
               [ display_name_for_item(s), s[s.class.primary_key] ]
