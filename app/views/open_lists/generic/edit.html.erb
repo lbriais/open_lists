@@ -1,11 +1,11 @@
 <div class="page-header">
-  <h1><%=t '.title', :default => [:'helpers.titles.edit', 'Edit %{model}'], :model => @model.display_name.singularize %></h1>
+  <h1><%=t nil, default: t('openlists.edit_something', default: 'Edit %s') % [@model.display_name.singularize] %></h1>
 </div>
 
 <%= render 'form' %>
 
-<%= link_to t('.show', :default => t("helpers.links.show")),
+<%= link_to t('openlists.show'),
             item_path, :class => 'mini-btn' %>
 |
-<%= link_to t('.back', :default => t("helpers.links.back")),
+<%= link_to t('openlists.show'),
             model_path, :class => 'mini-btn' %>

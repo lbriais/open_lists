@@ -4,13 +4,13 @@
 
 
 <% if @items.empty? %>
-    <%= content_tag :div, t("This list contains no element."), class: "well well-large" %>
+    <%= content_tag :div, t("openlists.empty_list", default: "This list contains no element."), class: "well well-large" %>
 <% else %>
 
     <% column_list_to_display = fields_to_display_for_model %>
 
     <% if column_list_to_display.empty? %>
-        <%= content_tag :div, t("This list has no column defined."), class: "well well-large" %>
+        <%= content_tag :div, t("openlists.no_column_list", default: "This list has no column defined."), class: "well well-large" %>
     <% else %>
         <div class="row-fluid">
           <div class="span3">
@@ -32,7 +32,7 @@
                   </th>
               <%end %>
 
-              <th><%= t '.actions', :default => t("helpers.actions") %></th>
+              <th><%= t("openlists.actions") %></th>
             </tr>
             </thead>
             <tbody>
@@ -45,12 +45,12 @@
                   <% end %>
 
                   <td>
-                    <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                    <%= link_to t("openlists.edit"),
                                 edit_item_path(item), :class => 'btn btn-mini' %>
-                    <%= link_to t('.delete', :default => t("helpers.links.delete")),
+                    <%= link_to t('openlists.delete'),
                                 item_path(item),
                                 :method => :delete,
-                                :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                                :data => { :confirm => t('openlists.confirm', :default => 'Are you sure you want to permanently remove this item?') },
                                 :class => 'btn btn-mini btn-danger' %>
                   </td>
                 </tr>

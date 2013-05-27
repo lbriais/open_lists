@@ -1,4 +1,4 @@
-<h1>New <%= @model.display_name.singularize %></h1>
+<h1><%= t nil, default: t('openlists.new', default: "New %s") % [@model.display_name.singularize] %></h1>
 
 <%= render 'form' %>
 

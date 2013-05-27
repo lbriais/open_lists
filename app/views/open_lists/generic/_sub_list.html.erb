@@ -1,5 +1,5 @@
 <% if items.empty? %>
-    <%= content_tag :div, t("This list contains no element."), class: "well well-large" %>
+    <%= content_tag :div, t("openlists.empty_list", default: "This list contains no element."), class: "well well-large" %>
 <% else %>
     <div class="row-fluid">
       <div class="span12">
@@ -7,10 +7,10 @@
           <thead>
           <tr>
             <th class="span1">
-              <%= t '.actions', :default => t("helpers.actions") %>
+              <%= t 'openlists.actions' %>
             </th>
             <th class="span11">
-              <%=  t('.reference', default: "%s Reference" % [model.display_name]) %>
+              <%=  t(nil, default: t('openlists.reference', default: "%s Reference") % [model.display_name]) %>
             </th>
           </tr>
           </thead>
@@ -18,7 +18,7 @@
           <% items.each do |item| %>
               <tr>
                 <td class="span1">
-                  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                  <%= link_to t('.edit', :default => t("openlists.edit")),
                               edit_item_path(item), :class => 'btn btn-mini' %>
 
                 </td>
