@@ -10,8 +10,10 @@
 <% relations = collections_linked_to(@model) %>
 <% unless relations.blank? %>
     <% relations.each do |linked_model| %>
-
-        <%= render :partial => 'sub_list', locals: {items: @item.send(linked_model)} %>
-        <hr/>
+        <% unless @item.send(linked_model).blank? %>
+            <%= content_tag :h2, t(".link", default: "Linked %s" % [@model.reflections[linked_model].klass.display_name]) %>
+            <%= render :partial => 'sub_list', locals: {items: @item.send(linked_model), model: @model.reflections[linked_model].klass} %>
+            <hr/>
+        <% end %>
     <% end %>
 <% end %>

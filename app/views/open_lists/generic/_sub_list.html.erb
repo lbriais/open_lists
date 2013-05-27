@@ -10,7 +10,7 @@
               <%= t '.actions', :default => t("helpers.actions") %>
             </th>
             <th class="span11">
-              <%= t('.reference', default: "Reference") %>
+              <%=  t('.reference', default: "%s Reference" % [model.display_name]) %>
             </th>
           </tr>
           </thead>
