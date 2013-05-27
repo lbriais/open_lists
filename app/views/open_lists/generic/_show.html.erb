@@ -1,11 +1,17 @@
 <% column_list_to_display = fields_to_display_for_model %>
 <%= content_tag "div", id: 'item', data: {object: @item.inspect} do %>
     <% column_list_to_display.each do |column_name| %>
-        <% next unless @item[column_name] %>
+        <% next if @item[column_name].blank? %>
         <%= column_name.titleize %>:
         <%= field_as_display_element @item, column_name %>
         <hr/>
     <%end %>
+<% end %>
+<% relations = collections_linked_to(@model) %>
+<% unless relations.blank? %>
+    <% relations.each do |linked_model| %>
 
-
+        <%= render :partial => 'sub_list', locals: {items: @item.send(linked_model)} %>
+        <hr/>
+    <% end %>
 <% end %>

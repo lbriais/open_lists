@@ -1,0 +1,35 @@
+<% if items.empty? %>
+    <%= content_tag :div, t("This list contains no element."), class: "well well-large" %>
+<% else %>
+    <div class="row-fluid">
+      <div class="span12">
+        <table class="table table-striped table-hover">
+          <thead>
+          <tr>
+            <th class="span1">
+              <%= t '.actions', :default => t("helpers.actions") %>
+            </th>
+            <th class="span11">
+              <%= t('.reference', default: "Reference") %>
+            </th>
+          </tr>
+          </thead>
+          <tbody>
+          <% items.each do |item| %>
+              <tr>
+                <td class="span1">
+                  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                              edit_item_path(item), :class => 'btn btn-mini' %>
+
+                </td>
+                <td class="span11" onclick="location.href='<%= item_path(item) %>'">
+                  <%= display_name_for_item item %>
+                </td>
+              </tr>
+          <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+<% end %>
+

@@ -75,20 +75,30 @@ module OpenLists
     # @return a display name for the item. many options there.
     # It will take the best option:
     # * if the item itself knows how to be displayed (respond_to? :display_name_for_item), it will be the preferred choice
-    # * if there is a title column, it will use it.
-    # * if there is a name column, it will use it.
-    # * if none of the above, it will display the name of class iten is an instance of follow by the id number
-    # * if there is no id (bad!!), it will diplay "No name"
+    # * if there is a non empty title column, it will use it.
+    # * if there is a non empty name column, it will use it.
+    # * if none of the above, it will display the name of class item is an instance of follow by the id number
+    # * if there is no id (bad!!), it will display "No name"
     # @param [ActiveRecord::Base] item
     def display_name_for_item(item)
       return "" if item.nil?
       name = I18n.t('.no_name', :default => "No name")
-      name = "#{item.class.display_name} #{item.attributes['id']}" if item.attribute_names.include? 'id'
-      name = item.attributes['name'] if item.attribute_names.include? 'name'
-      name = item.attributes['title'] if item.attribute_names.include? 'title'
+      if item.attribute_names.include? 'id'
+        name = "#{item.class.name.titleize} ##{item.attributes['id']}"
+        name = "#{item.class.display_name} ##{item.attributes['id']}" if item.class.respond_to? :display_name
+      end
+      name = item.attributes['name'] unless item.attributes['name'].blank?
+      name = item.attributes['title'] unless item.attributes['title'].blank?
       name = item.class.display_name_for_item(item) if item.class.respond_to? :display_name_for_item
       name
     end
+
+    def collections_linked_to(model = @model)
+      model.reflections.keys.map do |column|
+        column if model.reflections[column].collection?
+      end .compact
+    end
+
 
     ##
     # @return an array of editable attributes for this model
