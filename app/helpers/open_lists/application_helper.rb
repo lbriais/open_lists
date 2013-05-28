@@ -1,6 +1,8 @@
 module OpenLists
   module ApplicationHelper
 
+    MAX_TO_BE_DISPLAYED_AS_CHECKBOXES = 10
+
     DIRECTIONS = {
         desc: I18n.t('openlists.descending', :default => "descending"),
         asc:  I18n.t('openlists.ascending', :default => "ascending")
@@ -117,6 +119,12 @@ module OpenLists
       fields = model.attribute_names if fields.empty?
       fields
     end
+
+    def short_enough?(domain, association_name)
+      association_model = domain.model_class(association_name.to_s.pluralize)
+      association_model.count < MAX_TO_BE_DISPLAYED_AS_CHECKBOXES
+    end
+
 
     ##
     # @return the base url of the engine

@@ -1,0 +1,23 @@
+<%= content_tag :div, class: 'row-fluid' do %>
+    <% child_model = domain.model_class(association_name.to_s.pluralize)%>
+    <% child_model.limit(10).each do |child| %>
+        <% param_save_path = "#{model.name.underscore.tr('/', '_')}[#{association_name.to_s.singularize}_ids][]"%>
+        <% if short_enough? domain, association_name %>
+            <div>
+              <%= check_box_tag param_save_path, child.id, item.send(association_name).include?(child) %>
+              <%= display_name_for_item child %>
+            </div>
+
+        <% else %>
+            <%= content_tag :div, class: 'span5 linked' do %>
+
+            <% end %>
+            <%= content_tag :div, class: 'span2 commands' do %>
+
+            <% end %>
+            <%= content_tag :div, class: 'span5 unlinked' do %>
+
+            <% end %>
+        <% end %>
+    <% end %>
+<% end %>

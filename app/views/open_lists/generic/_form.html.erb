@@ -12,14 +12,23 @@
     <% end %>
 
     <div class="form-actions">
+
+      <!-- Display Standard fields and belongs_to associations-->
       <% fields_to_edit_for_model(model).each do |field| %>
           <div class="fields">
             <%= render partial: 'form_field', locals: {model: model, domain: domain, field: field, f: f} %>
           </div>
       <% end %>
 
+      <!-- Display associations has_many, has_many :through and habtm-->
+      <% collections_linked_to(model).each do |association_name| %>
+          <%= content_tag :div, class: :association, id: association_name do %>
+              <%= render partial: 'form_association', locals: {model: model, domain: domain, item: item, association_name: association_name, f: f} %>
+          <% end %>
+      <% end %>
+
       <%= f.submit nil, :class => 'btn btn-primary' %>
       <%= link_to t('openlists.cancel'),
                   item_path(item), :class => 'btn' %>
-      </div>
+    </div>
 <% end %>
