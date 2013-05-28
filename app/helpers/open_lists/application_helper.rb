@@ -2,8 +2,8 @@ module OpenLists
   module ApplicationHelper
 
     DIRECTIONS = {
-        desc: I18n.t('.ascending', :default => "descending"),
-        asc:  I18n.t('.ascending', :default => "ascending")
+        desc: I18n.t('openlists.descending', :default => "descending"),
+        asc:  I18n.t('openlists.ascending', :default => "ascending")
     }
 
     def current_direction
@@ -82,7 +82,7 @@ module OpenLists
     # @param [ActiveRecord::Base] item
     def display_name_for_item(item)
       return "" if item.nil?
-      name = I18n.t('.no_name', :default => "No name")
+      name = I18n.t('openlists.no_name', :default => "No name")
       if item.attribute_names.include? 'id'
         name = "#{item.class.name.titleize} ##{item.attributes['id']}"
         name = "#{item.class.display_name} ##{item.attributes['id']}" if item.class.respond_to? :display_name

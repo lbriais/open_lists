@@ -2,7 +2,6 @@
 <%= hidden_field_tag :sort, params[:sort] %>
 
 
-
 <% if @items.empty? %>
     <%= content_tag :div, t("openlists.empty_list", default: "This list contains no element."), class: "well well-large" %>
 <% else %>
@@ -15,7 +14,6 @@
         <div class="row-fluid">
           <div class="span3">
             Results per page: <%= items_per_page_button_tag params[:per] %>
-            </p>
           </div>
           <div class="span9">
             <%= paginate @items, remote: true %>
