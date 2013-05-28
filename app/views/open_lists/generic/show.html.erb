@@ -3,7 +3,7 @@
 <%= content_tag :h1, "Viewing #{@model.display_name}" %>
 <hr/>
 
-<%= render :partial => 'show' %>
+<%= render :partial => 'show', locals: {domain: @domain, model: @model, item: @item} %>
 <hr/>
 <%= link_to 'Edit', edit_item_path %> |
 <%= link_to 'Back', model_path %>

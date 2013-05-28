@@ -2,7 +2,7 @@
   <h1><%=t nil, default: t('openlists.edit_something', default: 'Edit %s') % [@model.display_name.singularize] %></h1>
 </div>
 
-<%= render 'form' %>
+<%= render partial: 'form', locals: {domain: @domain, model: @model, item: @item} %>
 
 <%= link_to t('openlists.show'),
             item_path, :class => 'mini-btn' %>

@@ -1,10 +1,10 @@
 <%= form_for(@item, form_options(@item)) do |f| %>
-    <% if @item.errors.any? %>
+    <% if item.errors.any? %>
         <div id="error_explanation">
-          <h2><%= pluralize(@item.errors.count, "error") %> prohibited this item from being saved:</h2>
+          <%= content_tag :h3, t('openlists.cannot_save', default: "%s prohibited this item from being saved:") % [pluralize(item.errors.count, "error")] %>
 
           <ul>
-            <% @item.errors.full_messages.each do |msg| %>
+            <% item.errors.full_messages.each do |msg| %>
                 <li><%= msg %></li>
             <% end %>
           </ul>
@@ -12,14 +12,14 @@
     <% end %>
 
     <div class="form-actions">
-      <% fields_to_edit_for_model.each do |field| %>
+      <% fields_to_edit_for_model(model).each do |field| %>
           <div class="fields">
-            <%= render partial: 'form_field', locals: {field: field, f: f} %>
+            <%= render partial: 'form_field', locals: {model: model, domain: domain, field: field, f: f} %>
           </div>
       <% end %>
 
       <%= f.submit nil, :class => 'btn btn-primary' %>
       <%= link_to t('openlists.cancel'),
-                  item_path, :class => 'btn' %>
+                  item_path(item), :class => 'btn' %>
       </div>
 <% end %>

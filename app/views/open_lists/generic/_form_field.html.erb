@@ -1,11 +1,11 @@
 <div class="form-field row-fluid" id="<%= field %>">
   <div class="span2">
     <b>
-      <%= f.label field.to_sym, @model.human_attribute_name(field) %>
+      <%= f.label field.to_sym, model.human_attribute_name(field) %>
     </b>
   </div>
   <div class="span10">
 
-    <%= field_as_edit_element(f, @model, field) %>
+    <%= field_as_edit_element(f, model, field) %>
   </div>
 </div>

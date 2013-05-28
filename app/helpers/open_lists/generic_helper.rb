@@ -31,8 +31,7 @@ module OpenLists
     # @return provides an option hash for the form tag as the controller is very specific
     # @param [DynamicModel::ActiveRecordExtension] item
     def form_options(item = @item)
-      url = item_path(item)
-      {url: url, controller: 'OpenLists::Generic'}
+      {url: item_path(item), controller: 'OpenLists::Generic'}
     end
 
     ## 

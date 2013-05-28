@@ -1,5 +1,5 @@
 <h1><%= t nil, default: t('openlists.new', default: "New %s") % [@model.display_name.singularize] %></h1>
 
-<%= render 'form' %>
+<%= render 'form', locals: {domain: @domain, model: @model, item: @item} %>
 
 <%= link_to 'Back', model_path %>

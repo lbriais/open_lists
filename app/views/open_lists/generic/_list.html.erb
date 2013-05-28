@@ -2,7 +2,7 @@
 <%= hidden_field_tag :sort, params[:sort] %>
 
 
-<% if @items.empty? %>
+<% if items.empty? %>
     <%= content_tag :div, t("openlists.empty_list", default: "This list contains no element."), class: "well well-large" %>
 <% else %>
 
@@ -16,7 +16,7 @@
             Results per page: <%= items_per_page_button_tag params[:per] %>
           </div>
           <div class="span9">
-            <%= paginate @items, remote: true %>
+            <%= paginate items, remote: true %>
           </div>
         </div>
         <div class="row-fluid">
@@ -34,7 +34,7 @@
             </tr>
             </thead>
             <tbody>
-            <% @items.each do |item| %>
+            <% items.each do |item| %>
                 <tr>
                   <% column_list_to_display.each do |column| %>
                       <td onclick="location.href='<%= item_path(item) %>'">
@@ -62,7 +62,7 @@
             Results per page: <%= items_per_page_button_tag params[:per] %>
           </div>
           <div class="span9">
-            <%= paginate @items, remote: true %>
+            <%= paginate items, remote: true %>
           </div>
         </div>    <% end %>
 <% end %>
