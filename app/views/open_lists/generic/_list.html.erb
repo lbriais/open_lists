@@ -57,7 +57,13 @@
           </table>
           </div>
         </div>
-        <%= paginate @items %>
-    <% end %>
+        <div class="row-fluid">
+          <div class="span3">
+            Results per page: <%= items_per_page_button_tag params[:per] %>
+          </div>
+          <div class="span9">
+            <%= paginate @items, remote: true %>
+          </div>
+        </div>    <% end %>
 <% end %>
 
