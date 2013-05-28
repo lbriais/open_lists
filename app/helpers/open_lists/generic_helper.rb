@@ -74,7 +74,7 @@ module OpenLists
             content = model.reflections[reflection_key].class_name.constantize.all.map do |s|
               [ display_name_for_item(s), s[s.class.primary_key] ]
             end
-            return form.select(attribute, content, {include_blank: I18n.t('openlists.none')})
+            return form.select(attribute, content, {include_blank: I18n.t('openlists.none', default: 'None')})
           end
           # Else just show the number
           form.number_field attribute.to_sym
