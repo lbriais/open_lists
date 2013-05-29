@@ -117,6 +117,8 @@ module OpenLists
     def fields_to_display_for_model(model = @model)
       fields = model.attr_accessible[:default].to_a - [""]
       fields = model.attribute_names if fields.empty?
+      # Special case it's a has_many relation
+      fields.delete_if {|field| model.reflections.keys.include? field.gsub(/_ids$/, '').pluralize.to_sym }
       fields
     end
 
