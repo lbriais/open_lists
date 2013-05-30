@@ -85,7 +85,7 @@ module OpenLists
       @item.destroy
 
       respond_to do |format|
-        format.html { redirect_to model_url }
+        format.html { redirect_to view_context.model_path }
         format.json { head :no_content }
       end
     end

@@ -122,7 +122,7 @@ module OpenLists
       fields
     end
 
-    def short_enough?(domain, association_name)
+    def has_few_records?(domain, association_name)
       association_model = domain.model_class(association_name.to_s.pluralize)
       association_model.count < MAX_TO_BE_DISPLAYED_AS_CHECKBOXES
     end

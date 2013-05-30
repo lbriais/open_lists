@@ -1,4 +1,4 @@
-<%= form_for(@item, form_options(@item)) do |f| %>
+<%= form_for(item, form_options(item)) do |f| %>
     <% if item.errors.any? %>
         <div id="error_explanation">
           <%= content_tag :h3, t('openlists.cannot_save', default: "%s prohibited this item from being saved:") % [pluralize(item.errors.count, "error")] %>
