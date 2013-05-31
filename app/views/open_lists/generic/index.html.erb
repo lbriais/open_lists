@@ -2,15 +2,17 @@
   <h1><%= t nil, default: t('openlists.list_of', default: "List of %s") % [@model.display_name.pluralize] %></h1>
   <% relations = @model.reflections.keys %>
   <% unless relations.blank? %>
-      <%= t 'openlists.this_table_has_relation_with', default: "This list has relations with:" %>
-      <% html = [] %>
-      <% relations.each do |linked_model| %>
-          <% linked_model_class = @domain.model_class(linked_model.to_s.pluralize) %>
-          <% html << link_to(linked_model_class.display_name.pluralize,
-                      model_path(linked_model_class)) %>
-
-      <% end %>
-      <%= raw html.join(', ') %>
+      <ul class="inline">
+        <li>
+          <%= t 'openlists.this_table_has_relation_with', default: "This list has relations with:" %>
+        </li>
+        <% relations.each do |linked_model| %>
+            <li>
+              <% linked_model_class = @domain.model_class(linked_model.to_s.pluralize) %>
+              <%= link_to(linked_model_class.display_name.pluralize, model_path(linked_model_class)) %>
+            </li>
+        <% end %>
+      </ul>
   <% end %>
 </div>
 
