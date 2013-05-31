@@ -11,7 +11,7 @@
     <% if column_list_to_display.empty? %>
         <%= content_tag :div, t("openlists.no_column_list", default: "This list has no column defined."), class: "well well-large" %>
     <% else %>
-        <%= render :partial => 'paginator', locals: {items: @items} %>
+        <%= render :partial => 'navigator', locals: {items: @items} %>
         <div class="row-fluid">
           <div class="span12">
             <table class="table table-striped table-hover">
@@ -50,7 +50,7 @@
             </table>
           </div>
         </div>
-        <%= render :partial => 'paginator', locals: {items: @items} %>
+        <%= render :partial => 'navigator', locals: {items: @items} %>
     <% end %>
 <% end %>
 

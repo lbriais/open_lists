@@ -1,0 +1,16 @@
+<table class="row-fluid navigator">
+  <tr>
+    <td class="span2">
+      <%= link_to t('openlists.new', default: "New %s" % [@model.display_name]),
+                  new_item_path,
+                  :class => 'btn btn-mini btn-primary' %>
+    </td>
+    <td class="span2">
+      <%= t('openlist.results_per_page', default: "Results per page:") %>
+      <%= items_per_page_button_tag params[:per] %>
+    </td>
+    <td class="span8">
+      <%= paginate items, remote: true %>
+    </td>
+  </tr>
+</table>
