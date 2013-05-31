@@ -1,0 +1,11 @@
+<table class="row-fluid">
+  <tr>
+  <td class="span2">
+    <%= t('openlist.results_per_page', default: "Results per page:") %>
+    <%= items_per_page_button_tag params[:per] %>
+  </td>
+  <td class="span10">
+    <%= paginate items, remote: true %>
+  </td>
+  </tr>
+</table>
