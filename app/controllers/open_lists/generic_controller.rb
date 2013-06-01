@@ -3,7 +3,7 @@ require_dependency "open_lists/application_controller"
 module OpenLists
   class GenericController < ApplicationController
     before_filter :determine_model
-    helper_method :sort_column, :sort_direction
+
 
     # GET /open_lists/:domain/:list_name
     # GET /open_lists/:domain/:list_name.json
@@ -103,19 +103,10 @@ module OpenLists
 
     private
 
-
-
     def actual_list_param_name
       @model.name.underscore.tr '/', '_'
     end
 
-    def sort_column
-      @model.column_names.include?(params[:sort]) ? params[:sort] : "id"
-    end
-
-    def sort_direction
-      %w[desc asc].include?(params[:direction]) ? params[:direction] : "desc"
-    end
 
   end
 end

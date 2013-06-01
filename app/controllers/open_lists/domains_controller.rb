@@ -2,15 +2,18 @@ require_dependency "open_lists/application_controller"
 
 module OpenLists
   class DomainsController < ApplicationController
+
+    before_filter :determine_domain
     # GET /domains
     # GET /domains.json
     def index
-      @domains = Domain.all
-  
+      @domains = Domain.order(sort_column + " " + sort_direction)
+
       respond_to do |format|
         format.html # index.html.erb
         format.json { render json: @domains }
       end
+
     end
   
     # GET /domains/1
@@ -83,5 +86,12 @@ module OpenLists
         format.json { head :no_content }
       end
     end
+
+    private
+
+    def determine_domain
+      @model = OpenLists::Domain
+    end
+
   end
 end

@@ -8,6 +8,7 @@
 # Standard Rails project
 /tmp/
 /db/*.sqlite3
+/test/dummy/db/*.sqlite3
 # SASS CSS generation
 /public/stylesheets/.sass-cache/
 # Netbeans

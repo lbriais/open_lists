@@ -23,3 +23,8 @@
 <div class="row-fluid" id="items-list">
   <%= render :partial => 'list' %>
 </div>
+<div class="row-fluid">
+  <%= link_to t('openlists.new', default: "New %s" % [@model.display_name]),
+              new_item_path,
+              :class => 'btn btn-mini btn-primary' %>
+</div>

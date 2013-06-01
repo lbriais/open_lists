@@ -1,2 +1,2 @@
-# Introspects database for user_defined domain.
-DynamicModel::introspect_database
+# Introspects database registered domains.
+DynamicModel::introspect_database OpenLists::Domain.all.map {|domain| domain.name}

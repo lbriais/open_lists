@@ -1,9 +1,13 @@
 module OpenLists
-  class Domain
-    # attr_accessible :title, :body
+  class Domain < ActiveRecord::Base
+    include DynamicModel::DomainExtension
+    attr_accessible :description, :name
 
-    def self.all
-      DynamicModel::ManagedDomains.domain_prefixes
+    after_commit :rescan_domain
+
+    def rescan_domain
+      DynamicModel::introspect name
     end
+
   end
 end
