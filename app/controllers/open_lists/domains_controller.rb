@@ -4,6 +4,7 @@ module OpenLists
   class DomainsController < ApplicationController
 
     before_filter :determine_domain
+
     # GET /domains
     # GET /domains.json
     def index
@@ -16,17 +17,7 @@ module OpenLists
 
     end
   
-    # GET /domains/1
-    # GET /domains/1.json
-    def show
-      @domain = Domain.find(params[:id])
-  
-      respond_to do |format|
-        format.html # show.html.erb
-        format.json { render json: @domain }
-      end
-    end
-  
+
     # GET /domains/new
     # GET /domains/new.json
     def new

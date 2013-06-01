@@ -6,3 +6,6 @@
   <%= render :partial => 'list' %>
 </div>
 
+<%= link_to t('openlists.import_domain', default: "Import a domain"),
+            new_domain_path,
+            :class => 'btn btn-mini btn-primary' %>
