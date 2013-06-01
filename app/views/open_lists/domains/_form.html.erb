@@ -11,6 +11,14 @@
         </div>
     <% end %>
 
+    <!-- Display Standard fields and belongs_to associations-->
+    <% fields_to_edit_for_model(@model).each do |field| %>
+        <div class="fields">
+          <%= render partial: 'form_field', locals: {model: @model, domain: @domain, field: field, f: f} %>
+        </div>
+    <% end %>
+
+
     <div class="actions">
       <%= f.submit %>
     </div>
