@@ -1,11 +1,13 @@
 <%
-column = column.to_s
-title ||= column.titleize
-title += " (#{current_direction})" if column == sort_column
+   column = column.to_s
+   title ||= column.titleize
+   # title += " (#{current_direction})" if column == sort_column
+   options = {title: title}
+   options[:glyph] = current_direction_glyph if column == sort_column
 %>
 
 <div class="btn-group">
-  <%= sortable_link_as_button(column, title: title) %>
+  <%= sortable_link_as_button(column, options) %>
   <button class="btn btn-mini dropdown-toggle" data-toggle="dropdown">
     <span class="caret"></span>
   </button>

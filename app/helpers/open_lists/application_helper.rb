@@ -4,8 +4,14 @@ module OpenLists
     MAX_TO_BE_DISPLAYED_AS_CHECKBOXES = 10
 
     DIRECTIONS = {
-        desc: I18n.t('openlists.descending', :default => "descending"),
-        asc:  I18n.t('openlists.ascending', :default => "ascending")
+        text: {
+          desc: I18n.t('openlists.descending', :default => "descending"),
+          asc:  I18n.t('openlists.ascending', :default => "ascending")
+        },
+        glyph: {
+            desc: 'icon-chevron-down',
+            asc: 'icon-chevron-up'
+        }
     }
 
     def current_direction
@@ -14,8 +20,10 @@ module OpenLists
     def other_direction
       sort_direction == 'desc' ? 'asc' : 'desc'
     end
-    def display_current_direction() DIRECTIONS[current_direction.to_sym] end
-    def display_other_direction() DIRECTIONS[other_direction.to_sym] end
+    def display_current_direction() DIRECTIONS[:text][current_direction.to_sym] end
+    def display_other_direction() DIRECTIONS[:text][other_direction.to_sym] end
+    def current_direction_glyph() DIRECTIONS[:glyph][current_direction.to_sym] end
+    def other_direction_glyph() DIRECTIONS[:glyph][other_direction.to_sym] end
 
 
     ## 
@@ -23,12 +31,13 @@ module OpenLists
     # @param [String] column: the name of the column to sort the list by
     # @param [String] title: An optional title for the link (if not provided, will be guessed from the column name)
     # @param [String] title: An optional css class for the generated link
-    def sortable_link(column, title: nil, css_class: "")
+    def  sortable_link(column, title: nil, css_class: "", glyph: nil)
       column = column.to_s
       title = column.titleize if title.nil?
+      title += "<i class=\"#{glyph}\"></i>" unless glyph.nil?
       css_class += column == sort_column ? " current_sort #{current_direction}" : ""
       direction = column == sort_column ? other_direction : current_direction
-      link_to title, params.merge(sort: column, direction: direction), class: css_class, remote: true, method: :get
+      link_to title.html_safe, params.merge(sort: column, direction: direction), class: css_class, remote: true, method: :get
     end
 
     ## 
@@ -36,8 +45,8 @@ module OpenLists
     # @param [String] column: the name of the column to sort the list by
     # @param [String] title: An optional title for the link (if not provided, will be guessed from the column name)
     # @param [String] title: An optional css class for the generated link
-    def sortable_link_as_button(column, title: nil, css_class: 'btn btn-mini')
-      sortable_link column, title: title, css_class: css_class
+    def sortable_link_as_button(column, title: nil, css_class: 'btn btn-mini', glyph: nil)
+      sortable_link column, title: title, css_class: css_class, glyph: glyph
     end
 
     ##

@@ -1,0 +1,8 @@
+<%= content_tag "div", id: 'domain', data: {object: domain.inspect} do %>
+    <%= t('openlists.description', default: "Description") %>:
+    <%= content_tag :div, domain.description , class: "well well-large" %>
+    <%= t('openlists.created_at', default: "Created on") %>:
+    <%= domain.created_at %>
+    <%= t('openlists.updated_at', default: "Updated on") %>:
+    <%= domain.updated_at %>
+<% end %>

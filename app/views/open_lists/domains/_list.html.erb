@@ -8,39 +8,20 @@
     <% column_list_to_display = ['name', 'description'] %>
     <div class="row-fluid">
       <div class="span12">
-        <table class="table table-striped table-hover">
-          <thead>
-          <tr>
-            <% column_list_to_display.each do |column_name| %>
-                <th>
-                  <%= column_list_header_button_tag column_name, OpenLists::Domain %>
-                </th>
-            <%end %>
-
-            <th><%= t("openlists.actions") %></th>
-          </tr>
-          </thead>
-          <tbody>
+        <div class="accordion" id="domain-accordion">
           <% @domains.each do |domain| %>
-              <tr>
-                <% column_list_to_display.each do |column| %>
-                    <td onclick="location.href='<%= domain_path(domain.name) %>'">
-                      <%= domain.attributes[column] %>
-                    </td>
-                <% end %>
-
-                <td>
-                  <%= link_to t('openlists.delete'),
-                              domain_path(domain),
-                              :method => :delete,
-                              :data => { :confirm => t('openlists.confirm_domain_deletion',
-                                                       :default => 'Are you sure you want delete this library? It permanently delete all lists of that domain ' ) },
-                              :class => 'btn btn-mini btn-danger' %>
-                </td>
-              </tr>
+              <%= content_tag :div, class: 'accordion-group' do %>
+                  <%= content_tag :div, class: 'accordion-heading' do %>
+                      <%= link_to domain.name, "#domain_#{domain.id}", :data => {toggle: 'collapse', parent: '#domain-accordion'} %>
+                  <% end %>
+                  <%= content_tag :div, class: 'accordion-body collapse', id: "domain_#{domain.id}" do %>
+                      <%= content_tag :div, class: 'accordion-inner' do %>
+                          <%= render :partial => 'show', locals: {domain: domain} %>
+                      <% end %>
+                  <% end %>
+              <% end %>
           <% end %>
-          </tbody>
-        </table>
+        </div>
       </div>
     </div>
 <% end %>
