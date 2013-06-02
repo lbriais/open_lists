@@ -40,7 +40,7 @@ module OpenLists
         link_to title, params.merge(sort: column, direction: direction), class: css_class, remote: true, method: :get
       else
         link_to(params.merge(sort: column, direction: direction), class: css_class, remote: true, method: :get) do
-          content = title + yield
+          content = yield title
           content.html_safe
         end
       end
@@ -51,14 +51,12 @@ module OpenLists
     # @param [String] column: the name of the column to sort the list by
     # @param [String] title: An optional title for the link (if not provided, will be guessed from the column name)
     # @param [String] title: An optional css class for the generated link
-    def sortable_link_as_button(column, title: nil, css_class: 'btn btn-mini', glyph: nil)
+    def sortable_link_as_button(column, title: nil, css_class: 'btn btn-mini', glyph: nil, &block)
       if block_given?
-        sortable_link(column, title: title, css_class: css_class) do
-          yield
-        end
+        sortable_link(column, title: title, css_class: css_class, &block)
       elsif glyph
-        sortable_link(column, title: title, css_class: css_class) do
-          "&nbsp;<i class=\"#{glyph}\"></i>"
+        sortable_link(column, title: title, css_class: css_class) do |title|
+          "#{title}&nbsp;<i class=\"#{glyph}\"></i>"
         end
       else
         sortable_link column, title: title, css_class: css_class
