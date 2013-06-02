@@ -13,6 +13,7 @@ module OpenLists
       respond_to do |format|
         format.html # index.html.erb
         format.json { render json: @domains }
+        format.js # index.js.coffee
       end
 
     end
