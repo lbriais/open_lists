@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.version     = OpenLists::VERSION
   s.authors     = ["L.Briais"]
   s.email       = ["lbnetid+rb@gmail.com"]
-  s.homepage    = "https://www.nanonet"
+  s.homepage    = "https://github.com/lbriais/open_lists"
   s.summary     = "Provides a generic UI for database tables."
   s.description = "Open Lists enables to manipulate tables in the database that have been introspected by database_introspection gem."
 
