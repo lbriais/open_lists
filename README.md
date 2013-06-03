@@ -2,7 +2,7 @@
 
 This is a Rails engine aiming at providing a Rails UI for the [Database Introspection][dbigemref] Gem.
 
-I is __not yet ready for production__, but already provides a consistent UI to manipulate database table content.
+It is __not yet ready for production__, but already provides a consistent UI to manipulate database table content.
 It cannot yet manipulate tables structure.
 
 
