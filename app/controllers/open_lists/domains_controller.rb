@@ -42,7 +42,7 @@ module OpenLists
   
       respond_to do |format|
         if @domain.save
-          format.html { redirect_to @domain, notice: 'Domain was successfully created.' }
+          format.html { redirect_to view_context.domains_path, notice: 'Domain was successfully created.' }
           format.json { render json: @domain, status: :created, location: @domain }
         else
           format.html { render action: "new" }
