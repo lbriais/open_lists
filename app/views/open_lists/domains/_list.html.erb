@@ -12,7 +12,7 @@
           <% @domains.each do |domain| %>
               <%= content_tag :div, class: 'accordion-group' do %>
                   <%= content_tag :div, class: 'accordion-heading' do %>
-                      <%= link_to domain.name, "#domain_#{domain.id}", :data => {toggle: 'collapse', parent: '#domain-accordion'} %>
+                      <%= link_to domain.name, "#domain_#{domain.id}", data: {toggle: 'collapse', parent: '#domain-accordion'} %>
                   <% end %>
                   <%= content_tag :div, class: 'accordion-body collapse', id: "domain_#{domain.id}" do %>
                       <%= content_tag :div, class: 'accordion-inner' do %>
