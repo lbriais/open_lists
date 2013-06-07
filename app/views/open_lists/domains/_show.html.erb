@@ -1,26 +1,26 @@
 <%= content_tag :div, id: 'domain', data: {object: domain.inspect} do %>
-  <%= content_tag :div, class: 'row-fluid' do %>
-    <%= content_tag :div, class: 'librairy-lists span6' do %>
-		  <%= t('openlists.description', default: "Lists in that library") %>:
-			<% unless domain.empty? %>
-			<ul class="nav nav-pills nav-stacked">
-			  <% domain.model_classes.each do |model| %>
-				  <%= content_tag :li do %>
-					  <%= link_to(model.display_name.pluralize, model_path(model)) %>
-					<% end %>
+    <%= content_tag :div, class: 'row-fluid' do %>
+        <%= content_tag :div, class: 'librairy-lists span6' do %>
+            <%= t('openlists.description', default: "Lists in that library") %>:
+            <% unless domain.empty? %>
+                <ul class="nav nav-pills nav-stacked">
+                  <% domain.model_classes.each do |model| %>
+                      <%= content_tag :li do %>
+                          <%= link_to(model.display_name.pluralize, model_path(model)) %>
+                      <% end %>
+                  <% end %>
+                </ul>
+            <% end %>
         <% end %>
-			</ul>
-      <% end %>
+        <%= content_tag :div, class: 'details span6' do %>
+            <%= t('openlists.description', default: "Description") %>:
+            <%= content_tag :div, domain.description , class: "well well-large" %>
+        <% end %>
     <% end %>
-    <%= content_tag :div, class: 'details span6' do %>
-      <%= t('openlists.description', default: "Description") %>:
-      <%= content_tag :div, domain.description , class: "well well-large" %>
+    <%= content_tag :div, class: 'row-fluid' do %>
+        <%= t('openlists.created_at', default: "Created on") %>:
+        <%= domain.created_at %>
+        <%= t('openlists.updated_at', default: "Updated on") %>:
+        <%= domain.updated_at %>
     <% end %>
-  <% end %>
-  <%= content_tag :div, class: 'row-fluid' do %>
-    <%= t('openlists.created_at', default: "Created on") %>:
-    <%= domain.created_at %>
-    <%= t('openlists.updated_at', default: "Updated on") %>:
-    <%= domain.updated_at %>
-  <% end %>
 <% end %>
