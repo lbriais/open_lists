@@ -1,7 +1,4 @@
 OpenLists::Engine.routes.draw do
-  resources :domain_lists
-
-
   scope '/:domain/:list_name' do
     get 'define', controller: :generic, action: :define_model
     resources '', controller:  :generic
@@ -11,6 +8,7 @@ OpenLists::Engine.routes.draw do
   #  resources '', controller:  :domain_lists
   #end
 
-  resources '', controller:  :domains
+  get '', controller:  :domains, action: :index
+  get '/:domain', controller: :domains, action: :index, domain: ':domain'
 
 end

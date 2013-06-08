@@ -17,7 +17,6 @@ module OpenLists
       end
 
     end
-  
 
     # GET /domains/new
     # GET /domains/new.json

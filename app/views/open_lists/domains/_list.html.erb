@@ -14,7 +14,11 @@
                   <%= content_tag :div, class: 'accordion-heading' do %>
                       <%= link_to domain.name, "#domain_#{domain.id}", data: {toggle: 'collapse', parent: '#domain-accordion'} %>
                   <% end %>
-                  <%= content_tag :div, class: 'accordion-body collapse', id: "domain_#{domain.id}" do %>
+                  <%
+                    accordion_body_class = %w(accordion-body collapse)
+                    accordion_body_class << 'in' if params[:domain] == domain.name
+                  %>
+                  <%= content_tag :div, class: accordion_body_class.join(" "), id: "domain_#{domain.id}" do %>
                       <%= content_tag :div, class: 'accordion-inner' do %>
                           <%= render :partial => 'show', locals: {domain: domain} %>
                       <% end %>
