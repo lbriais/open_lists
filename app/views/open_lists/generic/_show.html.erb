@@ -2,8 +2,14 @@
 <%= content_tag "div", id: 'item', data: {object: @item.inspect} do %>
     <% column_list_to_display.each do |column_name| %>
         <% next if item[column_name].blank? %>
-        <%= column_name.titleize %>:
-        <%= field_as_display_element item, column_name %>
+        <div class="row-fluid">
+          <div class="span2">
+            <strong><%= column_name.titleize %>:</strong>
+          </div>
+          <div class="span10">
+            <%= field_as_display_element item, column_name %>
+          </div>
+        </div>
         <hr/>
     <%end %>
 <% end %>
